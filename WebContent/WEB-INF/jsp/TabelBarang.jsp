@@ -46,19 +46,13 @@
             <label for="Satuan">Satuan</label>
             <input type="text" class="form-control" name="Satuan">
           </div>
-          <div>
-            <label for="Kategori">Kategori</label>
-            <input type="text" class="form-control" name="Kategori">
-          </div>
           <br>
-          <!-- <div class="dropdown">
-            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"> Kategori 
-            <span class="caret"></span></button>
-            <ul class="dropdown-menu"  role="menu" >
-               <li>Makanan</li>
-               <li>Minuman</li>
-            </ul>
-          </div> -->
+          <select name="Kategori">
+             <option value="Makanan">Makanan</option>
+             <option value="Minuman">Minuman</option>
+          </select>
+          <br>
+          
           <div class="modal-footer">
           <input type="submit" value="Save">
           </div>

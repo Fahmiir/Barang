@@ -7,3 +7,7 @@ margin-bottom:10px;
 #checkbox{
 padding-top:20px;	
 }
+
+.modal-footer {
+    border:  none;
+}
