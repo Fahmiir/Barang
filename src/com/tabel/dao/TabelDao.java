@@ -20,6 +20,16 @@ String sql = "INSERT INTO tabelmasterbarang (KodeBarang, NamaBarang, HargaJual, 
 	return template.update(sql);
 }
 
+public List<TabelModel> getComboBox(){
+	return template.query("SELECT Kategori FROM tabelmasterkategori",new RowMapper<TabelModel>(){
+		public TabelModel mapRow(ResultSet rs,int row)throws SQLException {
+			TabelModel t = new TabelModel();
+			t.setKategori(rs.getString(1));
+			return t;
+		}
+	});
+}
+
 	
 	
 }

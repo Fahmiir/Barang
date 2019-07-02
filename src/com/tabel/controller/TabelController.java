@@ -1,4 +1,6 @@
 package com.tabel.controller;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;    
 import org.springframework.stereotype.Controller;  
 import org.springframework.ui.Model;  
@@ -15,7 +17,9 @@ public class TabelController {
 TabelDao td;
 
 @RequestMapping(value="/",method=RequestMethod.GET)
-public String show( TabelModel tm){
+public String show( Model m){
+List<TabelModel> list=td.getComboBox();
+m.addAttribute("list",list);
 return "TabelBarang";
 }
 
