@@ -19,6 +19,8 @@ TabelDao td;
 @RequestMapping(value="/",method=RequestMethod.GET)
 public String show( Model m){
 List<TabelModel> list=td.getComboBox();
+List<TabelModel> list2=td.getData();
+m.addAttribute("list2", list2);
 m.addAttribute("list",list);
 return "TabelBarang";
 }

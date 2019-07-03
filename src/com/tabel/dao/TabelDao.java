@@ -30,6 +30,21 @@ public List<TabelModel> getComboBox(){
 	});
 }
 
+public List<TabelModel> getData(){
+	return template.query("SELECT KodeBarang,NamaBarang,HargaJual,HargaBeli,Satuan,Kategori FROM tabelmasterbarang",new RowMapper<TabelModel>(){
+		public TabelModel mapRow(ResultSet rs,int row)throws SQLException{
+			TabelModel t = new TabelModel();
+			t.setKodeBarang(rs.getInt(1));
+			t.setNamaBarang(rs.getString(2));
+			t.setHargaJual(rs.getInt(3));
+			t.setHargaBeli(rs.getInt(4));
+			t.setSatuan(rs.getString(5));
+			t.setKategori(rs.getString(6));
+			return t;
+		}	
+	});
+}
+
 	
 	
 }

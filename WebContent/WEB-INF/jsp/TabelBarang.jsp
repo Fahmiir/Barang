@@ -68,7 +68,6 @@
 </div>
 <div>
   <table class="table table-border">
-    <thead>
       <tr>
        <td>Kode Barang</td>
        <td>Nama Barang</td>
@@ -78,8 +77,19 @@
        <td>Kategori</td>
        <td id="checkbox"><input type="checkbox"> </td> 
       </tr>
+      <c:forEach items="${list2}" var="tabelmodel">
+      <tr>
+       <td>${tabelmodel.kodeBarang}</td>
+       <td>${tabelmodel.namaBarang}</td>
+       <td>${tabelmodel.hargaJual}</td>
+       <td>${tabelmodel.hargaBeli}</td>
+       <td>${tabelmodel.satuan}</td>
+       <td>${tabelmodel.kategori}</td>
+       <td><input type="checkbox"></td>
+      </tr>
+      </c:forEach>
     </table>
-    <p align="center"> Tidak ada data untuk ditampilkan</p>
+    <p align="center" style="display: none"> Tidak ada data untuk ditampilkan</p>
 </div>
   
 </body>
