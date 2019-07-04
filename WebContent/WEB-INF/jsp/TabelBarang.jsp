@@ -67,7 +67,7 @@
    </div>
 </div>
 <div>
-  <table class="table table-border">
+  <table class="table table-border"  id="tabeldata">
       <tr>
        <td>Kode Barang</td>
        <td>Nama Barang</td>
@@ -89,8 +89,16 @@
       </tr>
       </c:forEach>
     </table>
-    <p align="center" style="display: none"> Tidak ada data untuk ditampilkan</p>
+    <p align="center" style="display: none" id="display"> Tidak ada data untuk ditampilkan</p>
+    <p id="demo"></p>
 </div>
-  
+
+<script>
+var row = document.getElementById("tabeldata").rows.length-1;
+if(row==0){
+document.getElementById("display").style="block";	
+}
+ </script> 
+
 </body>
 </html>
