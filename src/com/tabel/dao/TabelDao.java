@@ -20,6 +20,11 @@ String sql = "INSERT INTO tabelmasterbarang (KodeBarang, NamaBarang, HargaJual, 
 	return template.update(sql);
 }
 
+public int update (TabelModel tm){
+String sql = "UPDATE tabelmasterbarang set KodeBarang='"+tm.getKodeBarang()+"',NamaBarang='"+tm.getNamaBarang()+"',HargaJual='"+tm.getHargaJual()+"',HargaBeli='"+tm.getHargaJual()+"',Satuan='"+tm.getSatuan()+"',Kategori='"+tm.getKategori()+"' WHERE ID='"+tm.getId()+"'";	
+return template.update(sql);
+}
+
 public List<TabelModel> getComboBox(){
 	return template.query("SELECT Kategori FROM tabelmasterkategori",new RowMapper<TabelModel>(){
 		public TabelModel mapRow(ResultSet rs,int row)throws SQLException {
@@ -43,6 +48,11 @@ public List<TabelModel> getData(){
 			return t;
 		}	
 	});
+}
+
+public TabelModel getDataById(int id){
+   String sql = "SELECT * FROM tabelmasterbarang where id=?";
+   return template.queryForObject(sql, new Object[]{id},new BeanPropertyRowMapper<TabelModel>(TabelModel.class));
 }
 
 	

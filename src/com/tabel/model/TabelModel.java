@@ -8,6 +8,15 @@ private int HargaJual;
 private int HargaBeli;
 private String Satuan;
 private String Kategori;
+private int Id;
+
+        public int getId(){
+            return Id;	
+        }
+        
+        public void setId(int Id){
+        	this.Id=Id;
+        }
 
 		public int getKodeBarang(){
 			return KodeBarang;

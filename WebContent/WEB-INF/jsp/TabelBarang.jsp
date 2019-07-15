@@ -16,7 +16,7 @@
 <body>
 <div id="button">
     <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#addModal">Add</button>
-    <button type="button" class="btn btn-secondary">Edit</button>
+    <button type="button" class="btn btn-secondary" data-toggle="modal"  onclick="checkBox()">Edit</button>
     <button type="button" class="btn btn-secondary">Delete</button>
 </div>
 <div class="modal fade" id="addModal" role="dialog">
@@ -66,6 +66,55 @@
     </div>
    </div>
 </div>
+
+<div class="modal fade" id="editModal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+         <h4 class="modal-title">Edit Data</h4>
+         <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+      <form method="post" var="tabelmodel">
+          <div class="form-group">
+            <label for="Kode Barang">Kode Barang</label>
+            <input type="text" class="form-control" name="KodeBarang" id="editkodebarang"> 
+          </div>
+          <div class="form-group">
+            <label for="Nama Barang">Nama Barang</label>
+            <input type="text" class="form-control" name="NamaBarang">
+          </div>
+          <div class="form-group">
+            <label for="Harga Beli">Harga Beli</label>
+            <input type="text" class="form-control" name="HargaBeli">
+          </div>
+          <div>
+            <label for="Harga Jual">Harga Jual</label>
+            <input type="text" class="form-control" name="HargaJual">
+          </div>
+          <div>
+            <label for="Satuan">Satuan</label>
+            <input type="text" class="form-control" name="Satuan">
+          </div>
+          <br>
+          <select name="Kategori">
+             <c:forEach items="${list}" var="tabelmodel">
+             <option value ="${tabelmodel.kategori}">${tabelmodel.kategori}</option>
+             </c:forEach>
+          </select>
+          <br>
+          
+          <div class="modal-footer">
+          <input type="submit" value="Save">
+          </div>
+      </form>
+          
+      </div>
+      
+    </div>
+   </div>
+</div>
+
 <div>
   <table class="table table-border"  id="tabeldata">
       <tr>
@@ -75,7 +124,7 @@
        <td>Harga Beli</td>
        <td>Satuan</td>
        <td>Kategori</td>
-       <td id="checkbox"><input type="checkbox"> </td> 
+       <td id="checkbox"><input type="checkbox" id="check"> </td> 
       </tr>
       <c:forEach items="${list2}" var="tabelmodel">
       <tr>
@@ -85,7 +134,7 @@
        <td>${tabelmodel.hargaBeli}</td>
        <td>${tabelmodel.satuan}</td>
        <td>${tabelmodel.kategori}</td>
-       <td><input type="checkbox"></td>
+       <td><input type="checkbox"  value="${tabelmodel.id}"></td>
       </tr>
       </c:forEach>
     </table>
@@ -96,8 +145,22 @@
 <script>
 var row = document.getElementById("tabeldata").rows.length-1;
 if(row==0){
-document.getElementById("display").style="block";	
+document.getElementById("display").style="block";
 }
+
+function checkBox() {
+var check = document.querySelectorAll('input[type="checkbox"]:checked').length;
+
+if(document.getElementById('check').checked){
+	check--;
+}
+
+if(check == 1 && !document.getElementById('check').checked){
+	$('#editModal').modal('show');
+} else {
+	alert("pilih salah satu data")
+} 
+	}
  </script> 
 
 </body>

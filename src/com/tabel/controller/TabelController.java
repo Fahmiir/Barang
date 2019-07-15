@@ -17,7 +17,7 @@ public class TabelController {
 TabelDao td;
 
 @RequestMapping(value="/",method=RequestMethod.GET)
-public String show( Model m){
+public String show(Model m){
 List<TabelModel> list=td.getComboBox();
 List<TabelModel> list2=td.getData();
 m.addAttribute("list2", list2);
@@ -28,6 +28,20 @@ return "TabelBarang";
 @RequestMapping(value="/save",method=RequestMethod.POST)
 public String save(@ModelAttribute("tm") TabelModel tm){
 td.save(tm);
+return "redirect:/";
+}
+
+@RequestMapping(value="/edit",method=RequestMethod.POST)
+public String editsave(@ModelAttribute("tm") TabelModel tm){
+td.update(tm);
+return "redirect:/";
+}
+
+@RequestMapping(value="/editdata/{id}")
+public String edit(@PathVariable int id,Model m,@ModelAttribute("t") TabelModel t){
+TabelModel tm = td.getDataById(id);
+m.addAttribute("command",tm);
+td.update(t);
 return "redirect:/";
 }
 
