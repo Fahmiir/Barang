@@ -10,40 +10,34 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod; 
 import com.tabel.dao.TabelDao;
 import com.tabel.model.TabelModel;
+
 @Controller 
-
 public class TabelController {
-@Autowired
-TabelDao td;
 
-@RequestMapping(value="/",method=RequestMethod.GET)
-public String show(Model m){
-List<TabelModel> list=td.getComboBox();
-List<TabelModel> list2=td.getData();
-m.addAttribute("list2", list2);
-m.addAttribute("list",list);
-return "TabelBarang";
-}
+	@Autowired
+	TabelDao td;
 
-@RequestMapping(value="/save",method=RequestMethod.POST)
-public String save(@ModelAttribute("tm") TabelModel tm){
-td.save(tm);
-return "redirect:/";
-}
+	@RequestMapping(value="/",method=RequestMethod.GET)
+	public String show(Model m){
+		List<TabelModel> list=td.getComboBox();
+		List<TabelModel> list2=td.getData();
+		m.addAttribute("list2", list2);
+		m.addAttribute("list",list);
+		return "TabelBarang";
+	}
+	
+	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	public String save(@ModelAttribute("tm") TabelModel tm) {
+		td.save(tm);
+		return "redirect:/";
+	}
 
-@RequestMapping(value="/edit",method=RequestMethod.POST)
-public String editsave(@ModelAttribute("tm") TabelModel tm){
-td.update(tm);
-return "redirect:/";
-}
+	@RequestMapping(value = "/edit", method = RequestMethod.POST)
+	public String edit(@ModelAttribute("tm") TabelModel tm) {
+		td.update(tm, tm.getId());
+		return "redirect:/";
+	}
 
-@RequestMapping(value="/editdata/{id}")
-public String edit(@PathVariable int id,Model m,@ModelAttribute("t") TabelModel t){
-TabelModel tm = td.getDataById(id);
-m.addAttribute("command",tm);
-td.update(t);
-return "redirect:/";
-}
 
 
 }

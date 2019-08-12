@@ -20,7 +20,7 @@ String sql = "INSERT INTO tabelmasterbarang (KodeBarang, NamaBarang, HargaJual, 
 	return template.update(sql);
 }
 
-public int update (TabelModel tm){
+public int update (TabelModel tm, int id){
 String sql = "UPDATE tabelmasterbarang set KodeBarang='"+tm.getKodeBarang()+"',NamaBarang='"+tm.getNamaBarang()+"',HargaJual='"+tm.getHargaJual()+"',HargaBeli='"+tm.getHargaJual()+"',Satuan='"+tm.getSatuan()+"',Kategori='"+tm.getKategori()+"' WHERE ID='"+tm.getId()+"'";	
 return template.update(sql);
 }
@@ -36,24 +36,22 @@ public List<TabelModel> getComboBox(){
 }
 
 public List<TabelModel> getData(){
-	return template.query("SELECT KodeBarang,NamaBarang,HargaJual,HargaBeli,Satuan,Kategori FROM tabelmasterbarang",new RowMapper<TabelModel>(){
+	return template.query("SELECT ID,KodeBarang,NamaBarang,HargaJual,HargaBeli,Satuan,Kategori FROM tabelmasterbarang",new RowMapper<TabelModel>(){
 		public TabelModel mapRow(ResultSet rs,int row)throws SQLException{
 			TabelModel t = new TabelModel();
-			t.setKodeBarang(rs.getInt(1));
-			t.setNamaBarang(rs.getString(2));
-			t.setHargaJual(rs.getInt(3));
-			t.setHargaBeli(rs.getInt(4));
-			t.setSatuan(rs.getString(5));
-			t.setKategori(rs.getString(6));
+			t.setId(rs.getInt(1));
+			t.setKodeBarang(rs.getInt(2));
+			t.setNamaBarang(rs.getString(3));
+			t.setHargaJual(rs.getInt(4));
+			t.setHargaBeli(rs.getInt(5));
+			t.setSatuan(rs.getString(6));
+			t.setKategori(rs.getString(7));
 			return t;
 		}	
 	});
 }
 
-public TabelModel getDataById(int id){
-   String sql = "SELECT * FROM tabelmasterbarang where id=?";
-   return template.queryForObject(sql, new Object[]{id},new BeanPropertyRowMapper<TabelModel>(TabelModel.class));
-}
+
 
 	
 	
